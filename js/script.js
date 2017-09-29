@@ -18,6 +18,9 @@ window.onload = function(){
 
 	// redraw the canvas - like Event.ENTER_FRAME in Adobe Flash.
 	function handleTick(event) {
+
+		console.log("tick");
+
 		stage.update();
 	}
 
@@ -172,9 +175,6 @@ window.onload = function(){
 		// run function to fade out frame 1 elements after 3000ms (3s);
 		setTimeout(fadeOutFrame1, 3000);
 
-		// update the stage
-		stage.update()
-
 		// after 4000ms (4s), run frame 2 function
 		setTimeout(frame2, 4000);
 	}
@@ -240,9 +240,6 @@ window.onload = function(){
 
 		// delay function run by 3000ms (3s) to fade out elements
 		setTimeout(fadeOutFrame2, 3000);
-
-		// update the stage
-		stage.update()
 
 		// after 4000ms (4s), run the frame 3 function
 		setTimeout(frame3, 4000);
@@ -349,8 +346,11 @@ window.onload = function(){
 
 				// delay function run for the sheen across the button by 5000ms (5s)
 				setTimeout(sheenAcrossButton, 5000);
-
-				// update the stage
-				stage.update()
 	}
+
+	// remove event listener after 15000ms
+	setTimeout(function() {
+		createjs.Ticker.removeEventListener("tick", handleTick)
+	}, 15000)
+
 };
